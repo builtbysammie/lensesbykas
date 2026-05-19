@@ -1028,6 +1028,75 @@
     .about-photo img { object-position: center top; }
     @media (max-width: 1024px) { .story-grid { grid-template-columns: 1fr; } .story-card { min-height: 440px; } }
 
+
+    /* ── FIXED HERO SLIDESHOW ── */
+    .hero-bg.hero-slideshow {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #07080c;
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .hero-bg.hero-slideshow .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 1.15s ease, transform 6s ease;
+      will-change: opacity, transform;
+    }
+
+    .hero-bg.hero-slideshow .hero-slide.active {
+      opacity: 1;
+      transform: scale(1.11) translate(-1%, -1%);
+      z-index: 1;
+    }
+
+    .hero-bg.hero-slideshow .hero-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7,8,12,0.72), rgba(7,8,12,0.24)),
+        linear-gradient(180deg, rgba(7,8,12,0.16), rgba(7,8,12,0.82));
+    }
+
+    .hero-slide-progress {
+      position: absolute;
+      z-index: 5;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(247,239,226,0.1);
+      overflow: hidden;
+    }
+
+    .hero-slide-progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      animation: slideProgress 4.2s linear infinite;
+    }
+
+    @keyframes slideProgress {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+
+    @media (max-width: 720px) {
+      .hero-bg.hero-slideshow .hero-slide {
+        background-position: center top;
+      }
+    }
+
   </style>
 </head>
 
@@ -1068,20 +1137,21 @@
   <!-- HERO -->
   <header class="hero" id="home">
     <div class="hero-bg hero-slideshow" aria-hidden="true">
-      <div class="hero-slide active" style="background-image:url('kas-wedding-look11.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('kas-couple-look4.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('Kas-portrait-colored-look3.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('kas-wedding-look9.jpg')"></div>
+      <div class="hero-slide active" style="background-image: url('kas-wedding-look11.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('kas-couple-look4.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('kas-wedding-look9.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('Kas-portrait-colored-look3.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('kas-wedding-look10.jpg');"></div>
     </div>
     <div class="hero-overlay"></div>
+    <div class="hero-slide-progress"><span></span></div>
     <div class="hero-content">
-      <div class="hero-tag"><span class="hero-tag-line"></span> Adebola Samuel · Surulere Lagos</div>
-      <h1 class="hero-h1">Weddings in<br><em>Focus.</em></h1>
+      <div class="hero-tag"><span class="hero-tag-line"></span> Adebola Samuel · Surulere, Lagos</div>
+      <h1 class="hero-h1">Weddings in<br><em>focus.</em></h1>
       <div class="hero-row">
-        <p class="hero-sub">Wedding, portrait, anniversary, and event photography in Surulere, Lagos, captured with warmth, polish, and emotion.</p>
+        <p class="hero-sub">Elegant wedding, portrait, anniversary, and lifestyle photography by Lenses by Kas, crafted for couples, families, and people who want memories with class.</p>
         <div class="hero-btns">
           <a class="btn-wa" href="https://wa.me/2348081116729?text=Hello%20Lenses%20by%20Kas%2C%20I%20would%20like%20to%20book%20a%20photography%20session." target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             Book Now
           </a>
           <a class="btn-ghost" href="#gallery">View Work</a>
@@ -1252,18 +1322,18 @@
       <div class="wrap">
         <div class="gallery-head reveal">
           <div>
-            <div class="label"><span class="label-line"></span> Gallery</div>
-            <h2 class="display-title">Selected frames.</h2>
+            <div class="label"><span class="label-line"></span> Selected Frames</div>
+            <h2 class="display-title">A curated<br>visual proof.</h2>
           </div>
           <a class="btn-ghost" href="https://www.instagram.com/lensesbykas/" target="_blank" rel="noopener">Instagram ↗</a>
         </div>
 
         <div class="mosaic">
-          <div class="m-item m-w reveal" data-l="Cover"><img src="kas-wedding-look11.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-t reveal reveal-delay-1" data-l="Portrait"><img src="KAS-OWNER-LOOK1.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-s reveal reveal-delay-2" data-l="Lifestyle"><img src="kas-wedding-look9.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-m reveal reveal-delay-1" data-l="Moments"><img src="kas-couple-look5.jpg" alt="" loading="lazy" /></div>
-          <div class="m-item m-s reveal reveal-delay-2" data-l="Details"><img src="kas-couple-look4.jpg" alt="" loading="lazy" /></div>
+          <div class="m-item m-xl reveal" data-l="Wedding"><img src="kas-wedding-look7.jpg" alt="Wedding photography by Lenses by Kas" loading="lazy" /></div>
+          <div class="m-item m-t reveal reveal-delay-1" data-l="Black & White"><img src="kas-wedding-bw-look8.jpg" alt="Black and white wedding photography by Lenses by Kas" loading="lazy" /></div>
+          <div class="m-item m-s reveal reveal-delay-2" data-l="Couple"><img src="kas-couple-look5.jpg" alt="Couple anniversary shoot by Lenses by Kas" loading="lazy" /></div>
+          <div class="m-item m-m reveal reveal-delay-1" data-l="Couple"><img src="kas-couple-look6.jpg" alt="Couple anniversary shoot by Lenses by Kas" loading="lazy" /></div>
+          <div class="m-item m-s reveal reveal-delay-2" data-l="Wedding"><img src="kas-wedding-look10.jpg" alt="Wedding image by Lenses by Kas" loading="lazy" /></div>
         </div>
       </div>
     </section>
@@ -1354,21 +1424,21 @@
       });
     });
 
-
     // HERO SLIDESHOW
-    const heroSlides = document.querySelectorAll('.hero-slide');
-    let heroSlideIndex = 0;
+    const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+    let currentHeroSlide = 0;
 
-    function showHeroSlide(index) {
+    function activateHeroSlide(index) {
       heroSlides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
       });
     }
 
     if (heroSlides.length > 1) {
+      activateHeroSlide(0);
       setInterval(() => {
-        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-        showHeroSlide(heroSlideIndex);
+        currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+        activateHeroSlide(currentHeroSlide);
       }, 4200);
     }
 
