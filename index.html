@@ -1335,6 +1335,220 @@
       .footer-links { text-align: center; }
       .footer-links a { display: inline-block; margin: 0 8px 10px; }
     }
+  
+
+    /* ============================================================
+       SAMMIE REVISION OVERRIDES
+       - no visible nav so the hero is untouched
+       - shorter story copy
+       - fixed collection accordion height
+       - full image lightbox
+       - cleaner slideshow ending
+    ============================================================ */
+    #nav,
+    .mobile-menu {
+      display: none !important;
+    }
+
+    #hero {
+      min-height: 100svh;
+    }
+
+    #offerings {
+      min-height: auto;
+    }
+
+    .offerings-header p:not(.eyebrow) {
+      max-width: 460px;
+    }
+
+    .offering-detail p {
+      max-width: 500px;
+    }
+
+    .collection-head-right {
+      max-width: 270px;
+      color: rgba(245,240,232,0.54);
+    }
+
+    .piece.open .piece-gallery {
+      max-height: 1800px;
+      overflow: visible;
+    }
+
+    .piece-gallery-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding-top: 3px;
+    }
+
+    .piece-img-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .piece-img-cell {
+      aspect-ratio: 3 / 4;
+      cursor: zoom-in;
+      background: #050505;
+    }
+
+    .piece-img-cell img {
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .piece-info {
+      padding: 0;
+      max-width: 680px;
+    }
+
+    .piece-info p {
+      max-width: 640px;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(5, 4, 3, 0.94);
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+
+    .image-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-lightbox img {
+      max-width: min(94vw, 980px);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 30px 120px rgba(0,0,0,0.65);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(201,169,110,0.35);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.25);
+    }
+
+    #cta {
+      min-height: 82vh;
+      display: grid;
+      place-items: center;
+      color: var(--ivory);
+      background: var(--black);
+    }
+
+    .closing-slides,
+    .closing-slide,
+    .cta-shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .closing-slide {
+      background-position: center top;
+      background-size: cover;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 1.4s ease, transform 7s ease;
+    }
+
+    .closing-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .cta-shade {
+      background:
+        linear-gradient(rgba(8,8,8,0.48), rgba(8,8,8,0.82)),
+        radial-gradient(circle at 50% 45%, rgba(201,169,110,0.12), transparent 36%);
+      z-index: 1;
+    }
+
+    #cta .cta-ghost,
+    #cta .cta-inner {
+      z-index: 2;
+    }
+
+    #cta .cta-ghost {
+      color: rgba(255,255,255,0.045);
+    }
+
+    #cta .cta-inner h2 {
+      color: var(--ivory);
+    }
+
+    #cta .cta-inner h2 em {
+      color: var(--gold-lt);
+    }
+
+    #cta .cta-inner p {
+      color: rgba(245,240,232,0.72);
+    }
+
+    #cta .btn-dark {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    #cta .btn-dark:hover {
+      background: transparent;
+      color: var(--gold-lt);
+      border-color: var(--gold-lt);
+    }
+
+    @media (max-width: 900px) {
+      .piece-gallery-inner {
+        padding: 0 28px 42px;
+      }
+
+      .piece-img-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .piece-img-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .piece-img-cell {
+        aspect-ratio: auto;
+        min-height: 0;
+      }
+
+      .piece-img-cell img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .collection-head-right {
+        text-align: left;
+      }
+    }
+
   </style>
 </head>
 
@@ -1493,7 +1707,7 @@
     <div class="offerings-header">
       <p class="eyebrow reveal">The House of Styledbylayo</p>
       <h2 class="reveal reveal-d1">What We <em>Create</em></h2>
-      <p class="reveal reveal-d2">A full fashion ecosystem — from the first consultation to the final fitting. Every service is an experience in itself.</p>
+      <p class="reveal reveal-d2">Five clear pathways into the brand — custom work, RTW, celebrity pieces, training and worldwide delivery.</p>
     </div>
 
     <div class="offerings-list">
@@ -1503,7 +1717,7 @@
         <div class="offering-body">
           <h3>Bridal &amp; Custom</h3>
           <div class="offering-detail">
-            <p>Bespoke bridal gowns and custom couture pieces created exclusively around your vision. Every stitch is deliberate, every silhouette yours alone.</p>
+            <p>Bespoke gowns and couture pieces shaped around the client, the body and the moment.</p>
             <span class="offering-tag">By Appointment Only</span>
           </div>
         </div>
@@ -1515,7 +1729,7 @@
         <div class="offering-body">
           <h3>Ready-to-Wear</h3>
           <div class="offering-detail">
-            <p>Editorial-quality pieces that move from concept to wardrobe. Designed with the precision of couture, worn with everyday confidence.</p>
+            <p>Finished looks with couture polish, designed for women who want presence without a full custom process.</p>
             <span class="offering-tag">Shop the Collection</span>
           </div>
         </div>
@@ -1527,7 +1741,7 @@
         <div class="offering-body">
           <h3>Celebrity &amp; Red Carpet</h3>
           <div class="offering-detail">
-            <p>Dressing Nigeria's most visible names for their most unforgettable moments — from events and campaigns to magazine covers.</p>
+            <p>Statement looks for high-visibility moments: events, campaigns, shoots and red-carpet energy.</p>
             <span class="offering-tag">Commission a Look</span>
           </div>
         </div>
@@ -1539,7 +1753,7 @@
         <div class="offering-body">
           <h3>Fashion Academy</h3>
           <div class="offering-detail">
-            <p>Shaping Africa's next generation of fashion leaders through @sblfashionacademy — a structured training programme powered by creativity and passion.</p>
+            <p>A structured fashion school in Lagos for creatives learning craft, design and industry discipline.</p>
             <span class="offering-tag">Learn More ↓</span>
           </div>
         </div>
@@ -1551,7 +1765,7 @@
         <div class="offering-body">
           <h3>Worldwide Shipping</h3>
           <div class="offering-detail">
-            <p>Made in Lagos. Worn across the globe. We work with diaspora clients who deserve access to world-class African design — wherever they are.</p>
+            <p>Made in Lagos, prepared for clients at home and abroad with clearer consultation and delivery expectations.</p>
             <span class="offering-tag">Trusted Global Delivery</span>
           </div>
         </div>
@@ -1586,7 +1800,7 @@
       <h2 class="reveal reveal-d1">The <em>Collection</em></h2>
     </div>
     <p class="collection-head-right reveal reveal-d2">
-      Each piece is a universe.<br />Click to enter.
+      Tap a piece to unfold its views.<br />Tap any image to view it fully.
     </p>
   </div>
 
@@ -1836,14 +2050,20 @@
 </section>
 
 <!-- =============================================
-     FINAL CTA
+     FINAL CTA — CLEAN SLIDESHOW ENDING
 ============================================== -->
 <section id="cta">
+  <div class="closing-slides" aria-hidden="true">
+    <div class="closing-slide active" style="background-image:url('gold-sculpted-evening-gown-back-view.3.jpg')"></div>
+    <div class="closing-slide" style="background-image:url('butterfly-beaded-evening-gown.2.jpg')"></div>
+    <div class="closing-slide" style="background-image:url('emerald-beaded-couture-gown.3.jpg')"></div>
+  </div>
+  <div class="cta-shade"></div>
   <div class="cta-ghost" aria-hidden="true">Layo</div>
   <div class="cta-inner">
     <p class="eyebrow reveal">Your Look Awaits</p>
     <h2 class="reveal reveal-d1">Ready to Create<br /><em>Your Look?</em></h2>
-    <p class="reveal reveal-d2">Every great piece starts with a conversation. Book your consultation and let's design something that belongs to no one else but you.</p>
+    <p class="reveal reveal-d2">A softer final moment for the website: elegant, direct and focused on consultation.</p>
     <a href="https://www.instagram.com/styledbylayo/" target="_blank" rel="noopener" class="btn-dark reveal reveal-d3">Book a Consultation</a>
     <p class="cta-meta reveal reveal-d4">By appointment only · Worldwide shipping · @styledbylayo</p>
   </div>
@@ -1880,6 +2100,13 @@
     </p>
   </div>
 </footer>
+
+
+<!-- Full Image Viewer -->
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+  <img src="" alt="Full collection view" id="lightboxImage">
+</div>
 
 <!-- =============================================
      JAVASCRIPT
@@ -2086,6 +2313,50 @@
       }
     });
   });
+
+
+  /* ── Full image lightbox ── */
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.piece-img-cell img').forEach(img => {
+    img.addEventListener('click', (event) => {
+      event.stopPropagation();
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt || 'Styledbylayo collection image';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+
+  /* ── Closing CTA slideshow ── */
+  const closingSlides = [...document.querySelectorAll('.closing-slide')];
+  let closingIndex = 0;
+  if (closingSlides.length > 1) {
+    setInterval(() => {
+      closingSlides[closingIndex].classList.remove('active');
+      closingIndex = (closingIndex + 1) % closingSlides.length;
+      closingSlides[closingIndex].classList.add('active');
+    }, 5200);
+  }
+
 </script>
 
 </body>
